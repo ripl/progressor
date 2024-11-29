@@ -1,30 +1,16 @@
-<p align="center">
-  <h1 align="center">Paper Title</h1>
-  <p align="center">
-    <a href="https://ttic.edu/">Author One</a>,
-    <a href="https://ttic.edu/">Author Two</a>
-  </p>
-  <p align="center">
-    <a href='https://arxiv.org/abs/'>
-      <img src='https://img.shields.io/badge/Paper-PDF-red?style=flat&logo=arXiv&logoColor=red' alt='Paper PDF'>
-    </a>
-    <a href='https://ripl.github.io/' style='padding-left: 0.5rem;'>
-      <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'>
-    </a>
-  </p>
-</p>
+# Nerfies
 
-# Project Name
+This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
 
-This is the repository that contains source code for [Project Name](https://ripl.github.io/ProjectName).
-
-# BibTeX
-If you find Project Name useful for your work please cite:
+If you find Nerfies useful for your work please cite:
 ```
-@article{key
-  author    = {Author One and Author Two},
-  title     = {Paper Title},
-  journal   = {arXiv preprint arXiv:NUMBER},
-  year      = {2024},
+@article{park2021nerfies
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
 }
 ```
+
+# Website License
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
