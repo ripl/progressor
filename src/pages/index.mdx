@@ -1,0 +1,174 @@
+---
+layout: ../layouts/Layout.astro
+title: "PROGRESSOR: A Perceptually Guided Reward Estimator with Self-Supervised Online Refinement"
+description: Simple project page template for your research paper, built with Astro and Tailwind CSS
+favicon: favicon.svg
+thumbnail: screenshot.png
+---
+
+import Layout from "../layouts/Layout.astro";
+
+import Header from "../components/Header.astro";
+import Video from "../components/Video.astro";
+import HighlightedSection from "../components/HighlightedSection.astro";
+import SmallCaps from "../components/SmallCaps.astro";
+import Figure from "../components/Figure.astro";
+import Image from "../components/Image.astro";
+import TwoColumns from "../components/TwoColumns.astro";
+
+import LaTeX from "../components/LaTeX.astro";
+
+import pipelinefig from "../../figs/progressor_method.png";
+import expfig from "../../figs/eval_tasks.png"
+import success_rate from "../../figs/success_rate.png"
+import train_reward from "../../figs/train_reward.png"
+
+
+
+import transformer from "../assets/transformer.webp";
+import Splat from "../components/Splat.tsx"
+
+import CodeBlock from "../components/CodeBlock.astro";
+import Table from "../components/Table.astro";
+export const components = {pre: CodeBlock, table: Table}
+
+<Header
+  title={frontmatter.title}
+  authors={[
+    {
+      name: "Tewodros W. Ayalew",
+      institution: "The University of Chicago",
+      //notes: ["*", "†"],
+    },
+    {
+      name: "Xiao Zhang ",
+      institution: "The University of Chicago",
+      notes: ["*"],
+    },
+    {
+      name: "Kevin Yuanbo Wu",
+      institution: "MathWorks",
+      notes: ["*"],
+    },
+    {
+      name: "Tianchong Jiang",
+      institution: "Toyota Technological Institute at Chicago",
+    },
+    {
+      name: "Michael Maire",
+      institution: "The University of Chicago",
+    },
+    {
+      name: "Matthew Walter",
+      institution: "Toyota Technological Institute at Chicago",
+    },
+  ]}
+  conference="Conference Name"
+  notes={[
+    {
+      symbol: "*",
+      text: "author note one",
+    },
+    {
+      symbol: "†",
+      text: "author note two",
+    },
+  ]}
+  links={[
+    {
+      name: "Paper",
+      url: "",
+      icon: "fa-solid:file-pdf",
+    },
+    {
+      name: "Code",
+      url: "",
+      icon: "mdi:github",
+    },
+    {
+      name: "arXiv",
+      url: "",
+      icon: "academicons:arxiv",
+    },
+  ]}
+  />
+
+
+<Video source="../video/progressor_demo.mp4" />
+
+<HighlightedSection>
+
+## Abstract
+We present P<span style="font-size: 80%">ROGRESSOR</span>, a novel framework that learns a task-agnostic reward function from videos, enabling policy training through goal-conditioned reinforcement learning (RL) without manual supervision. Underlying this reward is an estimate of the distribution over task progress as a function of the current, initial, and goal observations that is learned in a self-supervised fashion. Crucially, P<span style="font-size: 80%">ROGRESSOR</span> refines rewards adversarially during online RL training by pushing back predictions for out-of-distribution observations, to mitigate  distribution shift inherent in non-expert observations. Utilizing this progress prediction as a dense reward together with an adversarial push-back, we show that P<span style="font-size: 80%">ROGRESSOR</span> enables robots to learn complex behaviors without any external supervision. Pretrained on large-scale egocentric human video from EPIC-KITCHENS, P<span style="font-size: 80%">ROGRESSOR</span> requires no fine-tuning on in-domain task-specific data for generalization to real-robot offline RL under noisy demonstrations, outperforming contemporary methods that provide dense visual reward for robotic learning. Our findings highlight the potential of P<span style="font-size: 80%">ROGRESSOR</span> for scalable robotic applications where direct action labels and task-specific rewards are not readily available.
+</HighlightedSection>
+
+
+<Figure
+    caption="PROGRESSOR Pipeline"
+  >
+    
+    <Image source={pipelinefig} altText="PROGRESSOR Pipeline" />
+</Figure>
+
+
+## Method
+We propose to learn a unified reward model via an encoder that estimates the relative progress of an observation <LaTeX inline formula="\mathcal{o}_{j}" /> with respect to an initial observation <LaTeX inline formula="\mathcal{o}_{i}" /> and a goal observation <LaTeX inline formula="\mathcal{o}_{g}" />, all of which are purely pixel-based.
+
+### Learning the Self-Supervised Reward Model
+We optimize our reward model <LaTeX inline formula="\mathcal{r}_{\theta}" />  to predict the distribution of the progress on expert trajectory. We use a shared visual encoder to compute the per-frame representation, followed by several MLPs to produce the final estimation:
+<LaTeX formula="E_{\theta}(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})= \mathcal{N}\left(\mu, \sigma^2\right)"/>
+
+
+#### Using the Reward Model in Online RL
+We create the reward model by defining  a function derived from the model's predicted outputs given a sample of frame triplet (<LaTeX inline formula="(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})" />) of trajectory as:
+<LaTeX formula="\mathcal{r}_{\theta}(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})= \mu - \alpha \mathcal{H}(\mathcal{N}(\mu, \sigma^2))"/>
+
+###  Adversarial Online Refinement via Push-Back 
+
+To tackle this distribution shift, we implement an adversarial online refinement strategy, which we refer to as ``push-back'', that enables the reward model <LaTeX inline formula="\mathcal{r}_{\theta}" />  to differentiate between in- and out-of-distribution, <LaTeX inline formula="\tau \ and\ \tau'"/>.
+for a frame triplet <LaTeX inline formula="\mathcal{o}_i^{\tau_k'}, \mathcal{o}_j^{\tau_k'}, \mathcal{o}_g^{\tau_k'}"/> sampled from <LaTeX inline formula="\tau_k'" /> and the estimated progress <LaTeX inline formula="\mu_{\tau_k'}"/> from <LaTeX inline formula="E_{\theta}"/>, 
+we update <LaTeX inline formula="E_{\theta}"/> so that it learns to push-back the current estimation as <LaTeX inline formula="\beta\mu_{\tau_k'}"/> with <LaTeX inline formula="\beta \in [0,1]"/> as the decay factor.
+
+
+## Experimental Evaluation
+
+<Figure
+    caption="Experiments"
+  >
+    
+    <Image source={expfig} altText="Experiments" />
+</Figure>
+
+
+
+###  Simulated Experiments
+
+In our simulated experiments, we used benchmark tasks from the Meta-World environment [41], selecting six table-top manipulation tasks : door-open, drawer-open, hammer, peg-insert-side, pick-place, and reach
+
+<TwoColumns>
+  <Figure slot="left" caption="">
+    <Image source={train_reward} altText="Experiments" />
+  </Figure>
+  <Figure slot="right" caption="">
+   <Image source={success_rate} altText="Experiments" />
+  </Figure>
+</TwoColumns>
+
+###  Real-World Robotic Experiments
+
+
+
+
+## BibTeX citation
+
+```bibtex
+@misc{ayalew2024progressorperceptuallyguidedreward,
+      title={PROGRESSOR: A Perceptually Guided Reward Estimator with Self-Supervised Online Refinement}, 
+      author={Tewodros Ayalew and Xiao Zhang and Kevin Yuanbo Wu and Tianchong Jiang and Michael Maire and Matthew R. Walter},
+      year={2024},
+      eprint={2411.17764},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2411.17764}, 
+}
+```
