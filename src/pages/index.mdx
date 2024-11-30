@@ -22,7 +22,8 @@ import pipelinefig from "../../figs/progressor_method.png";
 import expfig from "../../figs/eval_tasks.png"
 import success_rate from "../../figs/success_rate.png"
 import train_reward from "../../figs/train_reward.png"
-import real_world_result from "../../figs/real_robot_eval.pdf"
+import human from "../../figs/kitchen.png"
+import drawer_close from "../../figs/reward_plot_drawer_close.png"
 
 
 import transformer from "../assets/transformer.webp";
@@ -164,9 +165,12 @@ We randomly sample frame triplets triplet (<LaTeX inline formula="(\mathcal{o}_{
 We compare PROGRESSOR with R3M and VIP by freezing the pre-trained models and using them as reward prediction models to train RWR-ACT on downstream robotic learning tasks. 
 
 <Figure caption="real-world experiments">
-    
-    <Image source={real_world_result} altText="real-world experiments" />
+    <Image source={kitchen} altText="real-world experiments" />
 </Figure>
+<Figure caption="real-world experiments">
+    <Image source={drawer_close} altText="real-world experiments" />
+</Figure>
+
 
 ## BibTeX citation
 
