@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site:"https://ripl.github.io/PROGRESSOR",
+  site:"https://ripl.github.io/progressor",
   integrations: [tailwind(), icon(), mdx(), react()],
   markdown: {
     shikiConfig: {
