@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Paper Title</h1>
+  <h1 align="center">P<span style="font-size: 80%">ROGRESSOR</span></h1>
   <p align="center">
     <a href="https://ttic.edu/">Author One</a>,
     <a href="https://ttic.edu/">Author Two</a>
