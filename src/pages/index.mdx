@@ -25,10 +25,11 @@ import train_reward from "../../figs/train_reward.png"
 import human from "../../figs/kitchen.png"
 import drawer_close from "../../figs/reward_plot_drawer_close.png"
 
-import pretrain from "../../figs/progressor1.gif"
-import pushback from "../../figs/progressor2.gif"
-import in_training from "../../figs/progressor3.gif"
+import pretrain from "../assets/videos/progressor1.mp4"
+import push from "../assets/videos/progressor2.mp4"
+import in_training from "../assets/videos/progressor3.mp4"
 
+import rwr from "../assets/videos/rwr_expts.mp4"
 
 import transformer from "../assets/transformer.webp";
 import Splat from "../components/Splat.tsx"
@@ -98,9 +99,8 @@ export const components = {pre: CodeBlock, table: Table}
   ]}
   />
 
-
-<Video source="../video/progressor_demo.mp4" />
-
+<Video source={rwr} />
+<br/>
 <HighlightedSection>
 
 ## Abstract
@@ -114,7 +114,8 @@ We propose to learn a unified reward model via an encoder that estimates the rel
 
 ### Learning the Self-Supervised Reward Model
 
-<img src="figs/progressor1.gif" width="700"/>
+<Video source={pretrain} />
+<br/>
 
 We optimize our reward model <LaTeX inline formula="\mathcal{r}_{\theta}" />  to predict the distribution of the progress on expert trajectory. We use a shared visual encoder to compute the per-frame representation, followed by several MLPs to produce the final estimation:
 <LaTeX formula="E_{\theta}(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})= \mathcal{N}\left(\mu, \sigma^2\right)"/>
@@ -130,11 +131,13 @@ To tackle this distribution shift, we implement an adversarial online refinement
 for a frame triplet <LaTeX inline formula="\mathcal{o}_i^{\tau_k'}, \mathcal{o}_j^{\tau_k'}, \mathcal{o}_g^{\tau_k'}"/> sampled from <LaTeX inline formula="\tau_k'" /> and the estimated progress <LaTeX inline formula="\mu_{\tau_k'}"/> from <LaTeX inline formula="E_{\theta}"/>, 
 we update <LaTeX inline formula="E_{\theta}"/> so that it learns to push-back the current estimation as <LaTeX inline formula="\beta\mu_{\tau_k'}"/> with <LaTeX inline formula="\beta \in [0,1]"/> as the decay factor.
 
-<img src="figs/progressor2.gif" width="700"/>
+<Video source={push} />
+<br/>
 
 During online training, we fine-tune <LaTeX inline formula="E_{\theta}"/> using hybrid objectives:
 
-<img src="figs/progressor3.gif" width="1000"/>
+<Video source={in_training} />
+<br/>
 
 
 ## Experimental Evaluation
@@ -169,7 +172,7 @@ We randomly sample frame triplets triplet (<LaTeX inline formula="(\mathcal{o}_{
 
 We compare PROGRESSOR with R3M and VIP by freezing the pre-trained models and using them as reward prediction models to train RWR-ACT on downstream robotic learning tasks. 
 
-<Video source="videos/rwr_expts.mp4" />
+<Video source={rwr} />
 <br/>
 
 ### Zero-shot Reward Estimation for in-domain and out-domain videos
