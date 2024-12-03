@@ -25,6 +25,10 @@ import train_reward from "../../figs/train_reward.png"
 import human from "../../figs/kitchen.png"
 import drawer_close from "../../figs/reward_plot_drawer_close.png"
 
+import pretrain from "../../figs/progressor1.gif"
+import pushback from "../../figs/progressor2.gif"
+import in_training from "../../figs/progressor3.gif"
+
 
 import transformer from "../assets/transformer.webp";
 import Splat from "../components/Splat.tsx"
@@ -104,18 +108,14 @@ We present P<span style="font-size: 80%">ROGRESSOR</span>, a novel framework tha
 </HighlightedSection>
 
 
-<Figure
-    caption="PROGRESSOR Pipeline"
-  >
-    
-    <Image source={pipelinefig} altText="PROGRESSOR Pipeline" />
-</Figure>
-
 
 ## Method
 We propose to learn a unified reward model via an encoder that estimates the relative progress of an observation <LaTeX inline formula="\mathcal{o}_{j}" /> with respect to an initial observation <LaTeX inline formula="\mathcal{o}_{i}" /> and a goal observation <LaTeX inline formula="\mathcal{o}_{g}" />, all of which are purely pixel-based.
 
 ### Learning the Self-Supervised Reward Model
+
+<img src="../../figs/progressor1.gif" width="700"/>
+
 We optimize our reward model <LaTeX inline formula="\mathcal{r}_{\theta}" />  to predict the distribution of the progress on expert trajectory. We use a shared visual encoder to compute the per-frame representation, followed by several MLPs to produce the final estimation:
 <LaTeX formula="E_{\theta}(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})= \mathcal{N}\left(\mu, \sigma^2\right)"/>
 
@@ -129,6 +129,12 @@ We create the reward model by defining  a function derived from the model's pred
 To tackle this distribution shift, we implement an adversarial online refinement strategy, which we refer to as ``push-back'', that enables the reward model <LaTeX inline formula="\mathcal{r}_{\theta}" />  to differentiate between in- and out-of-distribution, <LaTeX inline formula="\tau \ and\ \tau'"/>.
 for a frame triplet <LaTeX inline formula="\mathcal{o}_i^{\tau_k'}, \mathcal{o}_j^{\tau_k'}, \mathcal{o}_g^{\tau_k'}"/> sampled from <LaTeX inline formula="\tau_k'" /> and the estimated progress <LaTeX inline formula="\mu_{\tau_k'}"/> from <LaTeX inline formula="E_{\theta}"/>, 
 we update <LaTeX inline formula="E_{\theta}"/> so that it learns to push-back the current estimation as <LaTeX inline formula="\beta\mu_{\tau_k'}"/> with <LaTeX inline formula="\beta \in [0,1]"/> as the decay factor.
+
+<img src="../../figs/progressor2.gif" width="700"/>
+
+During online training, we fine-tune <LaTeX inline formula="E_{\theta}"/> using hybrid objectives:
+
+<img src="../../figs/progressor3.gif" width="1000"/>
 
 
 ## Experimental Evaluation
@@ -165,6 +171,7 @@ We randomly sample frame triplets triplet (<LaTeX inline formula="(\mathcal{o}_{
 We compare PROGRESSOR with R3M and VIP by freezing the pre-trained models and using them as reward prediction models to train RWR-ACT on downstream robotic learning tasks. 
 
 <Video source="../videos/rwr_expts.mp4" />
+
 
 ### Zero-shot Reward Estimation for in-domain and out-domain videos
 
