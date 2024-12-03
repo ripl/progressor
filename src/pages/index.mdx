@@ -114,7 +114,7 @@ We propose to learn a unified reward model via an encoder that estimates the rel
 
 ### Learning the Self-Supervised Reward Model
 
-<img src="../../figs/progressor1.gif" width="700"/>
+<img src="figs/progressor1.gif" width="700"/>
 
 We optimize our reward model <LaTeX inline formula="\mathcal{r}_{\theta}" />  to predict the distribution of the progress on expert trajectory. We use a shared visual encoder to compute the per-frame representation, followed by several MLPs to produce the final estimation:
 <LaTeX formula="E_{\theta}(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})= \mathcal{N}\left(\mu, \sigma^2\right)"/>
@@ -130,11 +130,11 @@ To tackle this distribution shift, we implement an adversarial online refinement
 for a frame triplet <LaTeX inline formula="\mathcal{o}_i^{\tau_k'}, \mathcal{o}_j^{\tau_k'}, \mathcal{o}_g^{\tau_k'}"/> sampled from <LaTeX inline formula="\tau_k'" /> and the estimated progress <LaTeX inline formula="\mu_{\tau_k'}"/> from <LaTeX inline formula="E_{\theta}"/>, 
 we update <LaTeX inline formula="E_{\theta}"/> so that it learns to push-back the current estimation as <LaTeX inline formula="\beta\mu_{\tau_k'}"/> with <LaTeX inline formula="\beta \in [0,1]"/> as the decay factor.
 
-<img src="../../figs/progressor2.gif" width="700"/>
+<img src="figs/progressor2.gif" width="700"/>
 
 During online training, we fine-tune <LaTeX inline formula="E_{\theta}"/> using hybrid objectives:
 
-<img src="../../figs/progressor3.gif" width="1000"/>
+<img src="figs/progressor3.gif" width="1000"/>
 
 
 ## Experimental Evaluation
@@ -145,7 +145,6 @@ During online training, we fine-tune <LaTeX inline formula="E_{\theta}"/> using 
     
     <Image source={expfig} altText="Experiments" />
 </Figure>
-
 
 
 ###  Simulated Experiments
@@ -170,8 +169,8 @@ We randomly sample frame triplets triplet (<LaTeX inline formula="(\mathcal{o}_{
 
 We compare PROGRESSOR with R3M and VIP by freezing the pre-trained models and using them as reward prediction models to train RWR-ACT on downstream robotic learning tasks. 
 
-<Video source="../videos/rwr_expts.mp4" />
-
+<Video source="videos/rwr_expts.mp4" />
+<br/>
 
 ### Zero-shot Reward Estimation for in-domain and out-domain videos
 
