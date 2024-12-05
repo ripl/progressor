@@ -24,6 +24,8 @@ import success_rate from "../../figs/success_rate.png"
 import train_reward from "../../figs/train_reward.png"
 import human from "../../figs/kitchen.png"
 import drawer_close from "../../figs/reward_plot_drawer_close.png"
+import legend from "../../figs/legend.png"
+
 
 import pretrain from "../assets/videos/progressor1.mp4"
 import push from "../assets/videos/progressor2.mp4"
@@ -152,7 +154,7 @@ During online training, we fine-tune <LaTeX inline formula="E_{\theta}"/> using 
 
 ###  Simulated Experiments
 
-In our simulated experiments, we used benchmark tasks from the Meta-World environment [41], selecting six table-top manipulation tasks : door-open, drawer-open, hammer, peg-insert-side, pick-place, and reach
+In our simulated experiments, we used benchmark tasks from the Meta-World environment, selecting six table-top manipulation tasks: door-open, drawer-open, hammer, peg-insert-side, pick-place, and reach.
 
 <TwoColumns>
   <Figure slot="left" caption="">
@@ -162,7 +164,14 @@ In our simulated experiments, we used benchmark tasks from the Meta-World enviro
    <Image source={success_rate} altText="Experiments" />
   </Figure>
 </TwoColumns>
-
+<Figure caption="Visualization of policy learning in the Meta-World simulation environment. We run PROGRESSOR and several baselines on
+six diverse tasks of various difficulties. We also run PROGRESSOR without online push-back as an ablation. We report the environment
+reward during training (left) and the task success rate from 10 rollouts (right) averaged over five seeds. The solid line denotes the mean and
+the transparent area denotes standard deviation. PROGRESSOR demonstrates clear advantages in both metrics, especially at early stages of training">
+  
+<Image source={legend} altText="legend" />
+</Figure>
+<br/>
 ###  Real-World Robotic Experiments
 
 #### Pretraining on Kitchen Dataset
@@ -175,7 +184,7 @@ We compare P<span style="font-size: 80%">ROGRESSOR</span> with R3M and VIP by fr
 <Video source={rwr} />
 <br/>
 
-### Zero-shot Reward Estimation for in-domain and out-domain videos
+### Zero-shot Reward Estimation For in-domain and out-domain Videos
 
 <Figure caption="real-world experiments">
     <Image source={human} altText="real-world experiments" />
