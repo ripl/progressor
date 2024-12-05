@@ -21,10 +21,10 @@ This is the repository that contains source code for [Project Name](https://ripl
 # BibTeX
 If you find Project Name useful for your work please cite:
 ```
-@article{key
-  author    = {Author One and Author Two},
-  title     = {Paper Title},
-  journal   = {arXiv preprint arXiv:NUMBER},
-  year      = {2024},
+@article{ayalew2024progressor,
+  title={PROGRESSOR: A Perceptually Guided Reward Estimator with Self-Supervised Online Refinement},
+  author={Ayalew, Tewodros and Zhang, Xiao and Wu, Kevin Yuanbo and Jiang, Tianchong and Maire, Michael and Walter, Matthew R},
+  journal={arXiv preprint arXiv:2411.17764},
+  year={2024}
 }
 ```
