@@ -143,7 +143,7 @@ During online training, we fine-tune <LaTeX inline formula="E_{\theta}"/> using 
 
 
 ## Experimental Evaluation
-
+We evaluate the effectiveness with which P<span style="font-size: 80%">ROGRESSOR</span> learns reward functions from visual demonstrations that enable robots to perform various manipulation tasks in simulation as well as the real world.
 <Figure
     caption="Experiments"
   >
@@ -175,8 +175,8 @@ the transparent area denotes standard deviation. PROGRESSOR demonstrates clear a
 ###  Real-World Robotic Experiments
 
 #### Pretraining on Kitchen Dataset
-We randomly sample frame triplets triplet (<LaTeX inline formula="(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})" />) from the videos ensuring a maximal frame gap <LaTeX inline formula="|i − g| ≤ 2000"/>.
-
+We randomly sample frame triplets triplet (<LaTeX inline formula="(\mathcal{o}_{i}, \mathcal{o}_{j}, \mathcal{o}_{g})" />) from the videos ensuring a maximal frame gap <LaTeX inline formula="|g-i| ≤ 2000"/>.
+<br/>
 #### Real-World Few-Shot Offline Reinforcement Learning with Noisy Demonstrations
 
 We compare P<span style="font-size: 80%">ROGRESSOR</span> with R3M and VIP by freezing the pre-trained models and using them as reward prediction models to train RWR-ACT on downstream robotic learning tasks. 
@@ -185,7 +185,7 @@ We compare P<span style="font-size: 80%">ROGRESSOR</span> with R3M and VIP by fr
 <br/>
 
 ### Zero-shot Reward Estimation For in-domain and out-domain Videos
-
+<br/>
 <Figure caption="real-world experiments">
     <Image source={human} altText="real-world experiments" />
 </Figure>
