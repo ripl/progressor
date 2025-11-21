@@ -1,0 +1,8 @@
+defaults:
+  - metaworld
+  - _self_
+
+task_name: sweep-into
+agent:
+  max_perturb_factor: 0.9
+  target_lambda: 0.6

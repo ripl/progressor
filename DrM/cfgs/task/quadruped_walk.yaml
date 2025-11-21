@@ -1,0 +1,9 @@
+defaults:
+  - medium
+  - _self_
+
+task_name: quadruped_walk
+replay_buffer_size: 100000
+agent:
+  max_perturb_factor: 1.0
+  target_lambda: 0.6

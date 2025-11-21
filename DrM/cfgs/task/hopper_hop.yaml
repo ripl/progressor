@@ -1,0 +1,8 @@
+defaults:
+  - medium
+  - _self_
+
+task_name: hopper_hop
+agent:
+  max_perturb_factor: 1.0
+  target_lambda: 0.6
