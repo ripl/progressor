@@ -260,13 +260,12 @@ The model is pretrained on EPIC-KITCHENS and evaluated on real-robot tasks witho
 If you use PROGRESSOR in your research, please cite:
 
 ```bibtex
-@InProceedings{Ayalew_2025_ICCV,
-  author = {Ayalew, Tewodros W. and Zhang, Xiao and Wu, Kevin Yuanbo and Jiang, Tianchong and Maire, Michael and Walter, Matthew R.},
-  title = {PROGRESSOR: A Perceptually Guided Reward Estimator with Self-Supervised Online Refinement},
-  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-  month = {October},
-  year = {2025},
-  pages = {10297-10306}
+@inproceedings{ayalew2025progressor,
+  title={Progressor: A perceptually guided reward estimator with self-supervised online refinement},
+  author={Ayalew, Tewodros W and Zhang, Xiao and Wu, Kevin Yuanbo and Jiang, Tianchong and Maire, Michael and Walter, Matthew R},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={10297--10306},
+  year={2025}
 }
 ```
 
