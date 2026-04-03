@@ -136,7 +136,6 @@ python train_mw.py task=drawer-open agent=drqv2 seed=0
 python train_mw.py task=hammer agent=drqv2 seed=42
 
 # Available tasks: drawer-open, door-open, hammer, peg-insert-side, pick-place, reach
-# See cfgs/task/ for all available task configurations
 ```
 
 **Important:** Before running training, you need to set the `exp_data_path` configuration. You can either:
