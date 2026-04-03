@@ -148,7 +148,7 @@ python train_mw.py task=hammer agent=drqv2 seed=42
 
 The expert demonstrations can be downloaded from the [PROGRESSOR_metaworld_expert_demonstrations](https://huggingface.co/datasets/tedywond/PROGRESSOR_metaworld_expert_demonstrations) dataset.
 
-**Note:** To use the pretrained reward model (recommended for replicating our results), download `all_tasks.pth` from the [pretrained weights repository](https://huggingface.co/tedywond/PROGRESSOR-pretrained-weight) and place it in `DrM/pretrained_reward/all_tasks.pth`. If the file is not found, the code will automatically pretrain the model from expert demonstrations, which takes additional time.
+**Note:** To use the pretrained reward model for the MetaWorld experiments (recommended for replicating our results), download `all_tasks.pth` from the [pretrained weights repository](https://huggingface.co/tedywond/PROGRESSOR-pretrained-weight) and place it in `DrM/pretrained_reward/all_tasks.pth`. If the file is not found, the code will automatically pretrain the model from expert demonstrations, which takes additional time.
 
 **Key Configuration Options:**
 - `task`: MetaWorld task name
